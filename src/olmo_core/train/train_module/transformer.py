@@ -350,6 +350,12 @@ def parallelize_model(
             device=device,
             pp_mesh=pp_mesh,
         )
+        log.info(
+            f"Materialized model with:\n"
+            f"- {m.num_params:,d} total params\n"
+            f"- {m.num_non_embedding_params:,d} non-embedding params\n"
+            f"- {m.num_trainable_params:,d} trainable params"
+        )
 
     return model
 
