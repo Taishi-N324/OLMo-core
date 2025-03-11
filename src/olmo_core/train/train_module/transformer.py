@@ -351,7 +351,7 @@ def parallelize_model(
             pp_mesh=pp_mesh,
         )
         log.info(
-            f"Materialized model with:\n"
+            f"Materialized model{'' if len(model_parts) == 1 else ' part'} with:\n"
             f"- {m.num_params:,d} total params\n"
             f"- {m.num_non_embedding_params:,d} non-embedding params\n"
             f"- {m.num_trainable_params:,d} trainable params"
