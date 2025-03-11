@@ -58,6 +58,12 @@ def build_config(run_name: str, overrides: List[str]) -> ExperimentConfig:
 
     model_config = TransformerConfig.llama2_271M(
         vocab_size=tokenizer_config.padded_vocab_size(),  # a little bigger than actual vocab size to make it a multiple of 128
+        freeze_params=[
+            "embeddings.*",
+            "blocks.*.attention*",
+            "blocks.*.feed_forward_norm.*",  # TODO: not sure if you want this frozen
+            "lm_head.*",
+        ],
     )
 
     dataset_config = NumpyDatasetConfig.glob(
